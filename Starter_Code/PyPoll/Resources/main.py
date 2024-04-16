@@ -33,11 +33,11 @@ with open(csvpath) as csvfile:
                 winner = DD
             elif RAD_votes > DD_votes and CCS_votes:
                 winner = RAD 
-    #create variables to calculate percent votes for each candidate of the total           
+#create variables to calculate percent votes for each candidate of the total           
     CCS_percent = round((CCS_votes / tot_votes) * 100, ndigits=3)
     DD_percent = round((DD_votes / tot_votes) * 100, ndigits=3)
     RAD_percent = round((RAD_votes / tot_votes) * 100, ndigits=3) 
-    #print results  
+#print results to terminal  
     print("Election Results")
     print("-------------------------")
     print(f'Total Votes: {tot_votes}')
@@ -48,3 +48,17 @@ with open(csvpath) as csvfile:
     print("-------------------------")
     print(f'Winner: {winner}')
     print("-------------------------")
+#print results to textfile
+txtfile = os.path.join("..", "Analysis", "py_poll_analysis.txt")
+
+with open(txtfile, 'w') as text:
+    text.write("Election Results \n")
+    text.write("------------------------- \n")
+    text.write(f'Total Votes: {tot_votes} \n')
+    text.write("------------------------- \n")
+    text.write(f'{CCS}: {CCS_percent}% ({CCS_votes}) \n')
+    text.write(f'{DD}: {DD_percent}% ({DD_votes}) \n')
+    text.write(f'{RAD}: {RAD_percent}% ({RAD_votes}) \n')
+    text.write("------------------------- \n")
+    text.write(f'Winner: {winner} \n')
+    text.write("------------------------- \n")

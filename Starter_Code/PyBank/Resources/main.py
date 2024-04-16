@@ -36,7 +36,7 @@ with open(csvpath) as csvfile:
         prev_row_delta = int(r[1])
 #Take average of calculated sum of all profit/loss changes and round to 2 decimal places
     avg_change = round(pl_diff_sum / (mon_count-1) ,ndigits= 2)
- #print out the results
+ #print out the results to terminal
     print("Financial Analysis")
     print("--------------------------------")
     print(f'Total Months: {mon_count}')
@@ -44,3 +44,14 @@ with open(csvpath) as csvfile:
     print(f'Average Change: ${avg_change}')
     print(f'Greatest Increase in Profits: {inc_date} (${largest_inc})')
     print(f'Greatest Decrease in Profits: {dec_date} (${largest_dec})')
+#print out results to a textfile  
+    txtfile = os.path.join("..", "Analysis", "py_bank_analysis.txt")
+
+    with open(txtfile, 'w') as text:
+        text.write("Financial Analysis \n")
+        text.write("-------------------------------- \n")
+        text.write(f'Total Months: {mon_count} \n')
+        text.write(f'Total: ${pro_loss_sum} \n')
+        text.write(f'Average Change: ${avg_change} \n')
+        text.write(f'Greatest Increase in Profits: {inc_date} (${largest_inc}) \n')
+        text.write(f'Greatest Decrease in Profits: {dec_date} (${largest_dec}) \n')
